@@ -13,10 +13,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Augenleuchten.Postetiketten
 {
-    public partial class Form1 : Form
+    public partial class FormMainWindow : Form
     {
-        public static string currentTime { get; set; }
-        public Form1()
+        public static string CurrentTime { get; set; }
+        public static string PrinterName { get; set; }
+        public FormMainWindow()
         {
             InitializeComponent();
         }
@@ -28,10 +29,21 @@ namespace Augenleuchten.Postetiketten
             //string output = @"C:\Users\guder\Downloads\output.pdf";
             //string output2 = @"C:\Users\guder\Downloads\output2.pdf";
 
+            if (openFileDialog1.FileName == "")
+            {
+                MessageBox.Show("Bitte wählen Sie eine Briefmarke aus.");
+                return;
+            }
+            else if (folderBrowserDialog1.SelectedPath == "")
+            {
+                MessageBox.Show("Bitte wählen Sie einen Ordner aus.");
+                return;
+            }
+
             string pfadZurBriefmarke = openFileDialog1.FileName;
             string outputFolder = folderBrowserDialog1.SelectedPath;
-            currentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            string outputPdf = outputFolder + @$"\{currentTime}-output.pdf";
+            CurrentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+            string outputPdf = outputFolder + @$"\{CurrentTime}-output.pdf";
             int anzahlBriefmarken = pfadZurBriefmarke.IndexOf("Stk");
             anzahlBriefmarken = int.Parse(pfadZurBriefmarke.Substring(anzahlBriefmarken - 1, 1));
             //Potenzieller Bug, wenn 10 Briefmarken gleichzeitig gedruckt werden würden, da dann die 1 nicht mehr im Pfad steht
@@ -97,7 +109,7 @@ namespace Augenleuchten.Postetiketten
                         graphics.DrawImage(image, new Rectangle(85, 0, breiteGross, hoeheGross), sourceRect, GraphicsUnit.Pixel);
                     }
 
-                    bitmap.Save($@"{outputPath}\{currentTime}-briefmarke{i}.png", System.Drawing.Imaging.ImageFormat.Png);
+                    bitmap.Save($@"{outputPath}\{CurrentTime}-briefmarke{i}.png", System.Drawing.Imaging.ImageFormat.Png);
 
                     ImagePrinter printer = new ImagePrinter(bitmap);
                     printer.Print();
@@ -122,6 +134,22 @@ namespace Augenleuchten.Postetiketten
         {
             folderBrowserDialog1.ShowDialog();
             txtBoxOutputPath.Text = folderBrowserDialog1.SelectedPath;
+        }
+
+        private void druckerAuswählenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void druckerAuswählenToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            printDialog1.ShowDialog();
+            PrinterName = printDialog1.PrinterSettings.PrinterName;
+        }
+
+        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
+        {
+            
         }
     }
 }

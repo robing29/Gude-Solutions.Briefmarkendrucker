@@ -28,7 +28,7 @@ namespace Augenleuchten.Postetiketten
             // Set printing margins to zero
             pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
 
-            pd.PrinterSettings.PrinterName = "OneNote for Windows 10";
+            pd.PrinterSettings.PrinterName =  FormMainWindow.PrinterName == null ? "MUNBYN itpp 130b" : FormMainWindow.PrinterName;
             // Print the document
             pd.Print();
         }
