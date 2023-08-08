@@ -3,7 +3,9 @@ using iText.Kernel.Pdf.Canvas;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using iText.Pdfa;
 using Spire.Pdf;
+using Spire.Pdf.Graphics;
 using System.Drawing.Printing;
 using System.Runtime.ExceptionServices;
 
@@ -45,15 +47,19 @@ namespace Augenleuchten.Postetiketten
 
         static void PrintPdf(string filePath)
         {
-            
 
-            
+
+
 
             //Print the document with the default printer 
-            
 
-            using (Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument(filePath))
-            {             
+
+            using (Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument())
+            {
+                doc.LoadFromFile(filePath);
+
+                var image = doc.SaveAsImage(0, 300, 300);
+                image.Save(@"C:\Users\rgude\Downloads\test.png", System.Drawing.Imaging.ImageFormat.Png);
                 // Choose the page index you want to print
                 int pageIndex = 0;
 
@@ -65,7 +71,7 @@ namespace Augenleuchten.Postetiketten
 
                 // Get the selected page
                 PdfPageBase page = doc.Pages[pageIndex];
-                int labelsToBePrinted = 4;
+                int labelsToBePrinted = 1;
                 int xAbstand = 82;
                 int yAbstand = 51;
                 int breite = 135;
@@ -74,36 +80,66 @@ namespace Augenleuchten.Postetiketten
                 {
                     using (Spire.Pdf.PdfDocument newDoc = new Spire.Pdf.PdfDocument())
                     {
-                        if(i % 2 == 0)
+                        if (i % 2 == 0)
                         {
                             yAbstand = yAbstand + hoehe;
-                        } else
+                        }
+                        else
                         {
                             yAbstand = yAbstand - hoehe;
                         }
-                        if(i % 2 == 0 && i != 0)
+                        if (i % 2 == 0 && i != 0)
                         {
                             xAbstand = xAbstand + breite;
                         }
-                        RectangleF printArea = new RectangleF(xAbstand, yAbstand, breite, hoehe); // Erste Briefmarke
+                        //var docdoc = page.Document.Pages[0].ExtractImages();
+                        RectangleF printArea = new RectangleF(xAbstand, yAbstand, breite, hoehe); // Print Briefmarken
+
+                        //Create a PdfUnitConvertor instance
+                        PdfUnitConvertor unitCvtr = new PdfUnitConvertor();
+                        //Convert the custom size in inches to points
+                        float width = unitCvtr.ConvertUnits(3.937f, PdfGraphicsUnit.Inch, PdfGraphicsUnit.Point);
+                        float height = unitCvtr.ConvertUnits(5.906f, PdfGraphicsUnit.Inch, PdfGraphicsUnit.Point);
+                        //Create a new SizeF instance from the custom size, then it will be used as the page size of the new PDF
+                        SizeF size = new SizeF(width, height);
 
                         //RectangleF printArea = new RectangleF(82, 51, 135, 257); // Erste Briefmarke links oben
                         PdfPageBase newPage = newDoc.Pages.Add(page.Size, new Spire.Pdf.Graphics.PdfMargins(0));
 
                         // Set the clip region to the desired area
-                        newPage.Canvas.SetClip(printArea);
+
 
                         // Draw the clipped content onto the new page
+                        //newPage.Canvas.DrawTemplate(page.CreateTemplate(), PointF.Empty);
+
+                        // Calculate scaling factors to fit the clip area to the new page
+                        float scaleX = newPage.Size.Width / printArea.Width;
+                        float scaleY = newPage.Size.Height / printArea.Height;
+                        float scale = Math.Min(scaleX, scaleY);
+
+                        newPage.Canvas.SetClip(printArea);
+                        var state = newPage.Canvas.Save();
+
+                        // Draw the clipped content onto the new page with the calculated scaling
+                        //newPage.Canvas.ScaleTransform(scale, scale);
+
                         newPage.Canvas.DrawTemplate(page.CreateTemplate(), PointF.Empty);
+
+
 
                         // Print the new page (which contains the clipped area)
 
+                        newDoc.PrintSettings.SelectSinglePageLayout(Spire.Pdf.Print.PdfSinglePageScalingMode.FitSize, true);
                         newDoc.PrintSettings.PrinterName = @"OneNote for Windows 10";
-                        newDoc.PrintSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 100, 100);
+
+
+
+                        //PaperSize is set in hundreds of inches -> 10x15 cm = 3.937x5.906 inches
+                        //newDoc.PrintSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 393, 590);
                         newDoc.Print();
                     }
                 }
-                
+
             }
         }
     }
