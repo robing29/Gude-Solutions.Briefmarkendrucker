@@ -5,6 +5,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using Spire.Pdf;
 using System.Drawing.Printing;
+using System.Runtime.ExceptionServices;
 
 namespace Augenleuchten.Postetiketten
 {
@@ -18,6 +19,7 @@ namespace Augenleuchten.Postetiketten
         private void button1_Click(object sender, EventArgs e)
         {
             string pfad4Briefmarken = @"C:\Users\rgude\Downloads\Briefmarken.4Stk.29.07.2023_1317.pdf";
+            string pfad1Briefmarke = @"C:\Users\rgude\Downloads\Briefmarken.1Stk.07.08.2023_2024.pdf";
             string output = @"C:\Users\rgude\Downloads\output.pdf";
             string output2 = @"C:\Users\rgude\Downloads\output2.pdf";
 
@@ -59,27 +61,49 @@ namespace Augenleuchten.Postetiketten
                 //165x104
 
                 //PageArea = 595x842
-                RectangleF printArea = new RectangleF(82, 51, 135, 257); // Example coordinates and size
+                //RectangleF printArea = new RectangleF(82, 51, 135, 257); // Example coordinates and size
 
                 // Get the selected page
                 PdfPageBase page = doc.Pages[pageIndex];
-
-                using (Spire.Pdf.PdfDocument newDoc = new Spire.Pdf.PdfDocument())
+                int labelsToBePrinted = 4;
+                int xAbstand = 82;
+                int yAbstand = 51;
+                int breite = 135;
+                int hoehe = 256;
+                for (int i = 0; i < labelsToBePrinted; i++)
                 {
-                    PdfPageBase newPage = newDoc.Pages.Add(page.Size, new Spire.Pdf.Graphics.PdfMargins(0));
+                    using (Spire.Pdf.PdfDocument newDoc = new Spire.Pdf.PdfDocument())
+                    {
+                        if(i % 2 == 0)
+                        {
+                            yAbstand = yAbstand + hoehe;
+                        } else
+                        {
+                            yAbstand = yAbstand - hoehe;
+                        }
+                        if(i % 2 == 0 && i != 0)
+                        {
+                            xAbstand = xAbstand + breite;
+                        }
+                        RectangleF printArea = new RectangleF(xAbstand, yAbstand, breite, hoehe); // Erste Briefmarke
 
-                    // Set the clip region to the desired area
-                    newPage.Canvas.SetClip(printArea);
+                        //RectangleF printArea = new RectangleF(82, 51, 135, 257); // Erste Briefmarke links oben
+                        PdfPageBase newPage = newDoc.Pages.Add(page.Size, new Spire.Pdf.Graphics.PdfMargins(0));
 
-                    // Draw the clipped content onto the new page
-                    newPage.Canvas.DrawTemplate(page.CreateTemplate(), PointF.Empty);
+                        // Set the clip region to the desired area
+                        newPage.Canvas.SetClip(printArea);
 
-                    // Print the new page (which contains the clipped area)
+                        // Draw the clipped content onto the new page
+                        newPage.Canvas.DrawTemplate(page.CreateTemplate(), PointF.Empty);
 
-                    newDoc.PrintSettings.PrinterName = @"OneNote for Windows 10";
-                    //newDoc.PrintSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 100, 100);
-                    newDoc.Print();
+                        // Print the new page (which contains the clipped area)
+
+                        newDoc.PrintSettings.PrinterName = @"OneNote for Windows 10";
+                        newDoc.PrintSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 100, 100);
+                        newDoc.Print();
+                    }
                 }
+                
             }
         }
     }
