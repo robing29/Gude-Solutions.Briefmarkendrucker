@@ -4,7 +4,7 @@
 - [ ] Package/Release mit Standalone-Exe bzw. Installer erstellen
 
 ## Priority - High:
-- [ ] Bug mit zweistelligen Briefmarken fixen ( -> !TryParse)
+
 
 ## Priority - Mid:
 
@@ -27,3 +27,4 @@
 - [x] Anzahl Briefmarken aus Dateinamen auslesen
 - [x] Silent Print
 - [x] Verschiedene Drucker auswählen können
+- [x] Bug mit zweistelligen Briefmarken fixen ( -> !TryParse)
