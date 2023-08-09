@@ -42,7 +42,7 @@
             txtBoxErkannteBriefmarken = new TextBox();
             menuStrip1 = new MenuStrip();
             druckerAuswählenToolStripMenuItem = new ToolStripMenuItem();
-            druckerAuswählenToolStripMenuItem1 = new ToolStripMenuItem();
+            druckerAuswählenToolStripMenuItem1 = new ToolStripComboBox();
             printDialog1 = new PrintDialog();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -160,9 +160,15 @@
             // 
             // druckerAuswählenToolStripMenuItem1
             // 
+            druckerAuswählenToolStripMenuItem1.AccessibleName = "Drucker Auswählen";
+            druckerAuswählenToolStripMenuItem1.AutoToolTip = true;
+            druckerAuswählenToolStripMenuItem1.DropDownStyle = ComboBoxStyle.DropDownList;
+            druckerAuswählenToolStripMenuItem1.MaxDropDownItems = 16;
             druckerAuswählenToolStripMenuItem1.Name = "druckerAuswählenToolStripMenuItem1";
-            druckerAuswählenToolStripMenuItem1.Size = new Size(180, 22);
-            druckerAuswählenToolStripMenuItem1.Text = "Drucker auswählen";
+            druckerAuswählenToolStripMenuItem1.Size = new Size(180, 23);
+            druckerAuswählenToolStripMenuItem1.Sorted = true;
+            druckerAuswählenToolStripMenuItem1.Tag = "Drucker Auswählen";
+            druckerAuswählenToolStripMenuItem1.ToolTipText = "Drucker Auswählen";
             druckerAuswählenToolStripMenuItem1.Click += druckerAuswählenToolStripMenuItem1_Click;
             // 
             // printDialog1
@@ -210,7 +216,7 @@
         private TextBox txtBoxErkannteBriefmarken;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem druckerAuswählenToolStripMenuItem;
-        private ToolStripMenuItem druckerAuswählenToolStripMenuItem1;
         private PrintDialog printDialog1;
+        private ToolStripComboBox druckerAuswählenToolStripMenuItem1;
     }
 }
