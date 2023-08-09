@@ -12,7 +12,7 @@
 
 ## Priority - Low:
 - [ ] Add a `README.md` file to the project.
-- [ ] Verschiedene Drucker über ein anderes Menü auswählen können (Dropdown?)
+
 
 - [ ] Automatisches Erkennen von neuen Dateien im Herkunftsordner
 
@@ -28,3 +28,4 @@
 - [x] Silent Print
 - [x] Verschiedene Drucker auswählen können
 - [x] Bug mit zweistelligen Briefmarken fixen ( -> !TryParse)
+- [x] Verschiedene Drucker über ein anderes Menü auswählen können (Dropdown?)

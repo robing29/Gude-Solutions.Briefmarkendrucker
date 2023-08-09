@@ -24,15 +24,15 @@ namespace Augenleuchten.Postetiketten
         public FormMainWindow()
         {
             InitializeComponent();
+
+            foreach (var printer in PrinterSettings.InstalledPrinters)
+            {
+                druckerAuswählenToolStripMenuItem1.Items.Add(printer);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string pfad4Briefmarken = @"C:\Users\guder\Downloads\Briefmarken.4Stk.29.07.2023_1317.pdf";
-            //string pfad1Briefmarke = @"C:\Users\guder\Downloads\Briefmarken.1Stk.07.08.2023_2024.pdf";
-            //string output = @"C:\Users\guder\Downloads\output.pdf";
-            //string output2 = @"C:\Users\guder\Downloads\output2.pdf";
-
             if (openFileDialog1.FileName == "")
             {
                 MessageBox.Show("Bitte wählen Sie eine Briefmarke aus.");
@@ -43,13 +43,23 @@ namespace Augenleuchten.Postetiketten
                 MessageBox.Show("Bitte wählen Sie einen Ordner aus.");
                 return;
             }
+            else if (druckerAuswählenToolStripMenuItem1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Bitte wählen Sie einen Drucker aus.");
+                return;
+            }
+            else if (AnzahlBriefmarken == 0)
+            {
+                MessageBox.Show("Kann keine Briefmarken im PDF erkennen. Bitte Datei überprüfen.");
+                return;
+            }
 
             string pfadZurBriefmarke = openFileDialog1.FileName;
             string outputFolder = folderBrowserDialog1.SelectedPath;
             CurrentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             string outputPdf = outputFolder + @$"\{CurrentTime}-output.pdf";
             //Potenzieller Bug, wenn 10 Briefmarken gleichzeitig gedruckt werden würden, da dann die 1 nicht mehr im Pfad steht
-
+            PrinterName = druckerAuswählenToolStripMenuItem1.SelectedItem.ToString();
 
             string rotatedPdf = RotatePdf(pfadZurBriefmarke, outputPdf, 270);
             PrintPdf(rotatedPdf, outputFolder, AnzahlBriefmarken);
@@ -157,13 +167,13 @@ namespace Augenleuchten.Postetiketten
 
         private void druckerAuswählenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            printDialog1.ShowDialog();
-            PrinterName = printDialog1.PrinterSettings.PrinterName;
+            //printDialog1.ShowDialog();
+            //PrinterName = printDialog1.PrinterSettings.PrinterName;
         }
 
         private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
