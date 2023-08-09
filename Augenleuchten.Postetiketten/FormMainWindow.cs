@@ -4,11 +4,14 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using iText.Pdfa;
+using Org.BouncyCastle.Bcpg;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Runtime.ExceptionServices;
+using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Augenleuchten.Postetiketten
@@ -17,6 +20,7 @@ namespace Augenleuchten.Postetiketten
     {
         public static string CurrentTime { get; set; }
         public static string PrinterName { get; set; }
+        private static int AnzahlBriefmarken { get; set; } = 0;
         public FormMainWindow()
         {
             InitializeComponent();
@@ -44,13 +48,11 @@ namespace Augenleuchten.Postetiketten
             string outputFolder = folderBrowserDialog1.SelectedPath;
             CurrentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             string outputPdf = outputFolder + @$"\{CurrentTime}-output.pdf";
-            int anzahlBriefmarken = pfadZurBriefmarke.IndexOf("Stk");
-            anzahlBriefmarken = int.Parse(pfadZurBriefmarke.Substring(anzahlBriefmarken - 1, 1));
             //Potenzieller Bug, wenn 10 Briefmarken gleichzeitig gedruckt werden würden, da dann die 1 nicht mehr im Pfad steht
 
 
             string rotatedPdf = RotatePdf(pfadZurBriefmarke, outputPdf, 270);
-            PrintPdf(rotatedPdf, outputFolder, anzahlBriefmarken);
+            PrintPdf(rotatedPdf, outputFolder, AnzahlBriefmarken);
         }
 
         public static string RotatePdf(string inputPath, string outputPath, float angle)
@@ -119,9 +121,21 @@ namespace Augenleuchten.Postetiketten
 
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            int anzahlBriefmarken = openFileDialog1.FileName.IndexOf("Stk");
-            anzahlBriefmarken = int.Parse(openFileDialog1.FileName.Substring(anzahlBriefmarken - 1, 1));
-            txtBoxErkannteBriefmarken.Text = anzahlBriefmarken.ToString();
+            AnzahlBriefmarken = AnzahlBriefmarkenExtrahieren(openFileDialog1.FileName);
+            txtBoxErkannteBriefmarken.Text = AnzahlBriefmarken.ToString();
+        }
+
+        private int AnzahlBriefmarkenExtrahieren(string filepath)
+        {
+            string regex = @".\.(?<number>\d+)Stk";
+            MatchCollection matches = Regex.Matches(filepath, regex);
+            int anzahlBriefmarken = 0;
+            if (matches.Count > 0)
+            {
+                Match lastmatch = matches[matches.Count - 1];
+                anzahlBriefmarken = int.Parse(lastmatch.Groups["number"].Value);
+            }
+            return anzahlBriefmarken;
         }
 
         private void btnChangePath_Click(object sender, EventArgs e)
