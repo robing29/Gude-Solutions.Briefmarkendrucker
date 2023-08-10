@@ -19,7 +19,6 @@ namespace Augenleuchten.Postetiketten
     public partial class FormMainWindow : Form
     {
         public static string CurrentTime { get; set; }
-        public static string PrinterName { get; set; }
         private static int AnzahlBriefmarken { get; set; } = 0;
         public FormMainWindow()
         {
@@ -27,8 +26,10 @@ namespace Augenleuchten.Postetiketten
 
             foreach (var printer in PrinterSettings.InstalledPrinters)
             {
-                druckerAuswählenToolStripMenuItem1.Items.Add(printer);
+                druckerAuswaehlenToolStripMenuItem1.Items.Add(printer);
             }
+            txtBoxOutputPath.Text = Properties.Settings.Default.Zielpfad;
+            druckerAuswaehlenToolStripMenuItem1.Text = Properties.Settings.Default.PrinterName;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,12 +39,12 @@ namespace Augenleuchten.Postetiketten
                 MessageBox.Show("Bitte wählen Sie eine Briefmarke aus.");
                 return;
             }
-            else if (folderBrowserDialog1.SelectedPath == "")
+            else if (Properties.Settings.Default.Zielpfad == "")
             {
                 MessageBox.Show("Bitte wählen Sie einen Ordner aus.");
                 return;
             }
-            else if (druckerAuswählenToolStripMenuItem1.SelectedIndex == -1)
+            else if (Properties.Settings.Default.PrinterName == "")
             {
                 MessageBox.Show("Bitte wählen Sie einen Drucker aus.");
                 return;
@@ -55,11 +56,11 @@ namespace Augenleuchten.Postetiketten
             }
 
             string pfadZurBriefmarke = openFileDialog1.FileName;
-            string outputFolder = folderBrowserDialog1.SelectedPath;
+            string outputFolder = Properties.Settings.Default.Zielpfad;
             CurrentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             string outputPdf = outputFolder + @$"\{CurrentTime}-output.pdf";
             //Potenzieller Bug, wenn 10 Briefmarken gleichzeitig gedruckt werden würden, da dann die 1 nicht mehr im Pfad steht
-            PrinterName = druckerAuswählenToolStripMenuItem1.SelectedItem.ToString();
+
 
             string rotatedPdf = RotatePdf(pfadZurBriefmarke, outputPdf, 270);
             PrintPdf(rotatedPdf, outputFolder, AnzahlBriefmarken);
@@ -124,7 +125,15 @@ namespace Augenleuchten.Postetiketten
                     bitmap.Save($@"{outputPath}\{CurrentTime}-briefmarke{i}.png", System.Drawing.Imaging.ImageFormat.Png);
 
                     ImagePrinter printer = new ImagePrinter(bitmap);
-                    printer.Print();
+                    try
+                    {
+                        printer.Print();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                        return;
+                    }
                 }
             }
         }
@@ -156,8 +165,12 @@ namespace Augenleuchten.Postetiketten
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
-            txtBoxOutputPath.Text = folderBrowserDialog1.SelectedPath;
+            var dr = folderBrowserDialog1.ShowDialog();
+            if(dr == DialogResult.OK)
+            {
+                Properties.Settings.Default.Zielpfad = folderBrowserDialog1.SelectedPath;
+                txtBoxOutputPath.Text = Properties.Settings.Default.Zielpfad;
+            }
         }
 
         private void druckerAuswählenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,13 +180,23 @@ namespace Augenleuchten.Postetiketten
 
         private void druckerAuswählenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //printDialog1.ShowDialog();
-            //PrinterName = printDialog1.PrinterSettings.PrinterName;
+            Properties.Settings.Default.PrinterName = druckerAuswaehlenToolStripMenuItem1.SelectedIndex == -1 ? "" : druckerAuswaehlenToolStripMenuItem1.SelectedItem.ToString();
         }
 
         private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
         {
 
+        }
+
+        private void druckerAuswaehlenToolStripMenuItem1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.PrinterName = druckerAuswaehlenToolStripMenuItem1.SelectedIndex == -1 ? "" : druckerAuswaehlenToolStripMenuItem1.SelectedItem.ToString();
+        }
+
+        private void FormMainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.Zielpfad = folderBrowserDialog1.SelectedPath == "" ? Properties.Settings.Default.Zielpfad : folderBrowserDialog1.SelectedPath;
+            Properties.Settings.Default.Save();
         }
     }
 }

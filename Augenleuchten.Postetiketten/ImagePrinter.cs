@@ -18,19 +18,27 @@ namespace Augenleuchten.Postetiketten
 
         public void Print()
         {
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += PrintPageHandler;
 
-            // Set paper size to 10x15 cm
-            PaperSize paperSize = new PaperSize("Custom", 394, 591); // In Inches
-            pd.DefaultPageSettings.PaperSize = paperSize;
+            try
+            {
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += PrintPageHandler;
 
-            // Set printing margins to zero
-            pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                // Set paper size to 10x15 cm
+                PaperSize paperSize = new PaperSize("Custom", 394, 591); // In Inches
+                pd.DefaultPageSettings.PaperSize = paperSize;
 
-            pd.PrinterSettings.PrinterName = FormMainWindow.PrinterName == null ? "MUNBYN itpp 130b" : FormMainWindow.PrinterName;
-            // Print the document
-            pd.Print();
+                // Set printing margins to zero
+                pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+
+                pd.PrinterSettings.PrinterName = Properties.Settings.Default.PrinterName;
+                // Print the document
+                pd.Print();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         private void PrintPageHandler(object sender, PrintPageEventArgs e)

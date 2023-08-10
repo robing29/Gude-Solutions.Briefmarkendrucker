@@ -42,17 +42,16 @@
             txtBoxErkannteBriefmarken = new TextBox();
             menuStrip1 = new MenuStrip();
             druckerAuswählenToolStripMenuItem = new ToolStripMenuItem();
-            druckerAuswählenToolStripMenuItem1 = new ToolStripComboBox();
+            druckerAuswaehlenToolStripMenuItem1 = new ToolStripComboBox();
             printDialog1 = new PrintDialog();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btnPrintCurrentFile
             // 
-            btnPrintCurrentFile.Location = new Point(98, 249);
-            btnPrintCurrentFile.Margin = new Padding(2);
+            btnPrintCurrentFile.Location = new Point(140, 415);
             btnPrintCurrentFile.Name = "btnPrintCurrentFile";
-            btnPrintCurrentFile.Size = new Size(488, 41);
+            btnPrintCurrentFile.Size = new Size(697, 68);
             btnPrintCurrentFile.TabIndex = 0;
             btnPrintCurrentFile.Text = "Drucken";
             btnPrintCurrentFile.UseVisualStyleBackColor = true;
@@ -60,33 +59,35 @@
             // 
             // openFileDialog1
             // 
-            openFileDialog1.FileName = "openFileDialog1";
             openFileDialog1.Filter = "\"PDF-Dateien|*.pdf|Alle Dateien|*.*\"";
             openFileDialog1.Title = "Briefmarken auswählen";
             openFileDialog1.FileOk += openFileDialog1_FileOk;
             // 
             // txtBoxCurrentFile
             // 
-            txtBoxCurrentFile.Location = new Point(98, 54);
+            txtBoxCurrentFile.Location = new Point(140, 90);
+            txtBoxCurrentFile.Margin = new Padding(4, 5, 4, 5);
             txtBoxCurrentFile.Name = "txtBoxCurrentFile";
             txtBoxCurrentFile.ReadOnly = true;
-            txtBoxCurrentFile.Size = new Size(488, 23);
+            txtBoxCurrentFile.Size = new Size(695, 31);
             txtBoxCurrentFile.TabIndex = 1;
             // 
             // lblCurrentFile
             // 
             lblCurrentFile.AutoSize = true;
-            lblCurrentFile.Location = new Point(12, 57);
+            lblCurrentFile.Location = new Point(17, 95);
+            lblCurrentFile.Margin = new Padding(4, 0, 4, 0);
             lblCurrentFile.Name = "lblCurrentFile";
-            lblCurrentFile.Size = new Size(80, 15);
+            lblCurrentFile.Size = new Size(121, 25);
             lblCurrentFile.TabIndex = 2;
             lblCurrentFile.Text = "Aktuelle Datei";
             // 
             // btnChangePath
             // 
-            btnChangePath.Location = new Point(592, 53);
+            btnChangePath.Location = new Point(846, 88);
+            btnChangePath.Margin = new Padding(4, 5, 4, 5);
             btnChangePath.Name = "btnChangePath";
-            btnChangePath.Size = new Size(97, 24);
+            btnChangePath.Size = new Size(139, 40);
             btnChangePath.TabIndex = 3;
             btnChangePath.Text = "Ändern";
             btnChangePath.UseVisualStyleBackColor = true;
@@ -94,9 +95,10 @@
             // 
             // btnChangeOutputPath
             // 
-            btnChangeOutputPath.Location = new Point(592, 100);
+            btnChangeOutputPath.Location = new Point(846, 167);
+            btnChangeOutputPath.Margin = new Padding(4, 5, 4, 5);
             btnChangeOutputPath.Name = "btnChangeOutputPath";
-            btnChangeOutputPath.Size = new Size(97, 24);
+            btnChangeOutputPath.Size = new Size(139, 40);
             btnChangeOutputPath.TabIndex = 6;
             btnChangeOutputPath.Text = "Ändern";
             btnChangeOutputPath.UseVisualStyleBackColor = true;
@@ -105,18 +107,20 @@
             // lblOutputPath
             // 
             lblOutputPath.AutoSize = true;
-            lblOutputPath.Location = new Point(31, 105);
+            lblOutputPath.Location = new Point(44, 175);
+            lblOutputPath.Margin = new Padding(4, 0, 4, 0);
             lblOutputPath.Name = "lblOutputPath";
-            lblOutputPath.Size = new Size(61, 15);
+            lblOutputPath.Size = new Size(92, 25);
             lblOutputPath.TabIndex = 5;
             lblOutputPath.Text = "Zielordner";
             // 
             // txtBoxOutputPath
             // 
-            txtBoxOutputPath.Location = new Point(98, 101);
+            txtBoxOutputPath.Location = new Point(140, 168);
+            txtBoxOutputPath.Margin = new Padding(4, 5, 4, 5);
             txtBoxOutputPath.Name = "txtBoxOutputPath";
             txtBoxOutputPath.ReadOnly = true;
-            txtBoxOutputPath.Size = new Size(488, 23);
+            txtBoxOutputPath.Size = new Size(695, 31);
             txtBoxOutputPath.TabIndex = 4;
             // 
             // folderBrowserDialog1
@@ -126,50 +130,57 @@
             // lblErkannteBriefmarken
             // 
             lblErkannteBriefmarken.AutoSize = true;
-            lblErkannteBriefmarken.Location = new Point(192, 133);
+            lblErkannteBriefmarken.Location = new Point(274, 222);
+            lblErkannteBriefmarken.Margin = new Padding(4, 0, 4, 0);
             lblErkannteBriefmarken.Name = "lblErkannteBriefmarken";
-            lblErkannteBriefmarken.Size = new Size(120, 15);
+            lblErkannteBriefmarken.Size = new Size(179, 25);
             lblErkannteBriefmarken.TabIndex = 8;
             lblErkannteBriefmarken.Text = "Erkannte Briefmarken";
             // 
             // txtBoxErkannteBriefmarken
             // 
-            txtBoxErkannteBriefmarken.Location = new Point(318, 130);
+            txtBoxErkannteBriefmarken.Location = new Point(454, 217);
+            txtBoxErkannteBriefmarken.Margin = new Padding(4, 5, 4, 5);
             txtBoxErkannteBriefmarken.Name = "txtBoxErkannteBriefmarken";
             txtBoxErkannteBriefmarken.ReadOnly = true;
-            txtBoxErkannteBriefmarken.Size = new Size(82, 23);
+            txtBoxErkannteBriefmarken.Size = new Size(115, 31);
             txtBoxErkannteBriefmarken.TabIndex = 7;
             txtBoxErkannteBriefmarken.TextAlign = HorizontalAlignment.Center;
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(24, 24);
             menuStrip1.Items.AddRange(new ToolStripItem[] { druckerAuswählenToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(701, 24);
+            menuStrip1.Padding = new Padding(9, 3, 0, 3);
+            menuStrip1.Size = new Size(1001, 35);
             menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             // 
             // druckerAuswählenToolStripMenuItem
             // 
-            druckerAuswählenToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { druckerAuswählenToolStripMenuItem1 });
+            druckerAuswählenToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            druckerAuswählenToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { druckerAuswaehlenToolStripMenuItem1 });
             druckerAuswählenToolStripMenuItem.Name = "druckerAuswählenToolStripMenuItem";
-            druckerAuswählenToolStripMenuItem.Size = new Size(90, 20);
+            druckerAuswählenToolStripMenuItem.Size = new Size(132, 29);
             druckerAuswählenToolStripMenuItem.Text = "Einstellungen";
             druckerAuswählenToolStripMenuItem.Click += druckerAuswählenToolStripMenuItem_Click;
             // 
-            // druckerAuswählenToolStripMenuItem1
+            // druckerAuswaehlenToolStripMenuItem1
             // 
-            druckerAuswählenToolStripMenuItem1.AccessibleName = "Drucker Auswählen";
-            druckerAuswählenToolStripMenuItem1.AutoToolTip = true;
-            druckerAuswählenToolStripMenuItem1.DropDownStyle = ComboBoxStyle.DropDownList;
-            druckerAuswählenToolStripMenuItem1.MaxDropDownItems = 16;
-            druckerAuswählenToolStripMenuItem1.Name = "druckerAuswählenToolStripMenuItem1";
-            druckerAuswählenToolStripMenuItem1.Size = new Size(180, 23);
-            druckerAuswählenToolStripMenuItem1.Sorted = true;
-            druckerAuswählenToolStripMenuItem1.Tag = "Drucker Auswählen";
-            druckerAuswählenToolStripMenuItem1.ToolTipText = "Drucker Auswählen";
-            druckerAuswählenToolStripMenuItem1.Click += druckerAuswählenToolStripMenuItem1_Click;
+            druckerAuswaehlenToolStripMenuItem1.AccessibleName = "Drucker Auswählen";
+            druckerAuswaehlenToolStripMenuItem1.AutoToolTip = true;
+            druckerAuswaehlenToolStripMenuItem1.DropDownStyle = ComboBoxStyle.DropDownList;
+            druckerAuswaehlenToolStripMenuItem1.DropDownWidth = 300;
+            druckerAuswaehlenToolStripMenuItem1.MaxDropDownItems = 16;
+            druckerAuswaehlenToolStripMenuItem1.Name = "druckerAuswaehlenToolStripMenuItem1";
+            druckerAuswaehlenToolStripMenuItem1.Size = new Size(180, 33);
+            druckerAuswaehlenToolStripMenuItem1.Sorted = true;
+            druckerAuswaehlenToolStripMenuItem1.Tag = "Drucker Auswählen";
+            druckerAuswaehlenToolStripMenuItem1.ToolTipText = "Drucker Auswählen";
+            druckerAuswaehlenToolStripMenuItem1.SelectedIndexChanged += druckerAuswaehlenToolStripMenuItem1_SelectedIndexChanged;
+            druckerAuswaehlenToolStripMenuItem1.Click += druckerAuswählenToolStripMenuItem1_Click;
             // 
             // printDialog1
             // 
@@ -177,9 +188,9 @@
             // 
             // FormMainWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(701, 316);
+            ClientSize = new Size(1001, 527);
             Controls.Add(lblErkannteBriefmarken);
             Controls.Add(txtBoxErkannteBriefmarken);
             Controls.Add(btnChangeOutputPath);
@@ -192,9 +203,9 @@
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(2);
             Name = "FormMainWindow";
             Text = "Gude-Solutions Briefmarkendrucker";
+            FormClosed += FormMainWindow_FormClosed;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -217,6 +228,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem druckerAuswählenToolStripMenuItem;
         private PrintDialog printDialog1;
-        private ToolStripComboBox druckerAuswählenToolStripMenuItem1;
+        private ToolStripComboBox druckerAuswaehlenToolStripMenuItem1;
     }
 }
