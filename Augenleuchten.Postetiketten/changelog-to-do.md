@@ -1,5 +1,5 @@
 # To-Do:
-- [ ] Drucker und Zielordner-Einstellungen speichern können
+
 - [ ] Unnötige Verweise entfernen, nur eine PDF-Library benutzen?
 - [ ] Package/Release mit Standalone-Exe bzw. Installer erstellen
 
@@ -29,3 +29,4 @@
 - [x] Verschiedene Drucker auswählen können
 - [x] Bug mit zweistelligen Briefmarken fixen ( -> !TryParse)
 - [x] Verschiedene Drucker über ein anderes Menü auswählen können (Dropdown?)
+- [x] Drucker und Zielordner-Einstellungen speichern können
