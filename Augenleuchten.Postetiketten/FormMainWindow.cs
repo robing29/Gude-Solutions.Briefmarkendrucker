@@ -1,24 +1,15 @@
-using iText.Kernel.Pdf;
-using iText.Kernel.Pdf.Canvas;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
-using iText.Pdfa;
-using Org.BouncyCastle.Bcpg;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Runtime.ExceptionServices;
 using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Augenleuchten.Postetiketten
 {
     public partial class FormMainWindow : Form
     {
-        public static string CurrentTime { get; set; }
+        public static string? CurrentTime { get; set; }
         private static int AnzahlBriefmarken { get; set; } = 0;
         public FormMainWindow()
         {
@@ -61,8 +52,6 @@ namespace Augenleuchten.Postetiketten
                 string outputFolder = Properties.Settings.Default.Zielpfad;
                 CurrentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
                 string outputPdf = outputFolder + @$"\{CurrentTime}-output.pdf";
-                //Potenzieller Bug, wenn 10 Briefmarken gleichzeitig gedruckt werden würden, da dann die 1 nicht mehr im Pfad steht
-
 
                 string rotatedPdf = RotatePdf(pfadZurBriefmarke, outputPdf, 270);
                 PrintPdf(rotatedPdf, outputFolder, AnzahlBriefmarken);
@@ -76,17 +65,21 @@ namespace Augenleuchten.Postetiketten
 
         public static string RotatePdf(string inputPath, string outputPath, float angle)
         {
-            using (var pdfReader = new PdfReader(inputPath))
-            using (var pdfWriter = new PdfWriter(outputPath))
-            using (var pdfDocument = new iText.Kernel.Pdf.PdfDocument(pdfReader, pdfWriter))
+            PdfDocument pdfDocument = new PdfDocument();
+            pdfDocument.LoadFromFile(inputPath);
+
+            int pageCount = pdfDocument.Pages.Count;
+            for (int pageNumber = 0; pageNumber < pageCount; pageNumber++)
             {
-                int pageCount = pdfDocument.GetNumberOfPages();
-                for (int pageNumber = 1; pageNumber <= pageCount; pageNumber++)
-                {
-                    PdfPage page = pdfDocument.GetPage(pageNumber);
-                    page.SetRotation((page.GetRotation() + (int)angle) % 360);
-                }
+                PdfPageBase page = pdfDocument.Pages[pageNumber];
+                int rotation = (int)page.Rotation;
+
+                //Rotate the page 180 degrees clockwise based on the original rotation angle
+
+                rotation += (int)PdfPageRotateAngle.RotateAngle270;
+                page.Rotation = (PdfPageRotateAngle)rotation;
             }
+            pdfDocument.SaveToFile(outputPath);
             return outputPath;
         }
 
@@ -95,9 +88,7 @@ namespace Augenleuchten.Postetiketten
             using (Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument())
             {
                 doc.LoadFromFile(filePath);
-
                 var image = doc.SaveAsImage(0, 300, 300);
-                //image.Save(@"C:\Users\guder\Downloads\test.png", System.Drawing.Imaging.ImageFormat.Png);
 
                 int labelsToBePrinted = anzahlBriefmarken;
 
@@ -126,7 +117,6 @@ namespace Augenleuchten.Postetiketten
 
                     using (Graphics graphics = Graphics.FromImage(bitmap))
                     {
-                        //graphics.DrawImage(image, 0, 0, sourceRect, GraphicsUnit.Pixel);
                         graphics.DrawImage(image, new Rectangle(85, 0, breiteGross, hoeheGross), sourceRect, GraphicsUnit.Pixel);
                     }
 
