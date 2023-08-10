@@ -2,6 +2,7 @@
 
 - [ ] Unnötige Verweise entfernen, nur eine PDF-Library benutzen?
 - [ ] Package/Release mit Standalone-Exe bzw. Installer erstellen
+- [ ] Visual Upgrade
 
 ## Priority - High:
 

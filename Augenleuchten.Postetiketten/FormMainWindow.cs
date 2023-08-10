@@ -34,36 +34,44 @@ namespace Augenleuchten.Postetiketten
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.FileName == "")
+            try
             {
-                MessageBox.Show("Bitte wählen Sie eine Briefmarke aus.");
-                return;
-            }
-            else if (Properties.Settings.Default.Zielpfad == "")
-            {
-                MessageBox.Show("Bitte wählen Sie einen Ordner aus.");
-                return;
-            }
-            else if (Properties.Settings.Default.PrinterName == "")
-            {
-                MessageBox.Show("Bitte wählen Sie einen Drucker aus.");
-                return;
-            }
-            else if (AnzahlBriefmarken == 0)
-            {
-                MessageBox.Show("Kann keine Briefmarken im PDF erkennen. Bitte Datei überprüfen.");
-                return;
-            }
+                if (openFileDialog1.FileName == "")
+                {
+                    MessageBox.Show("Bitte wählen Sie eine Briefmarke aus.");
+                    return;
+                }
+                else if (Properties.Settings.Default.Zielpfad == "")
+                {
+                    MessageBox.Show("Bitte wählen Sie einen Ordner aus.");
+                    return;
+                }
+                else if (Properties.Settings.Default.PrinterName == "")
+                {
+                    MessageBox.Show("Bitte wählen Sie einen Drucker aus.");
+                    return;
+                }
+                else if (AnzahlBriefmarken == 0)
+                {
+                    MessageBox.Show("Kann keine Briefmarken im PDF erkennen. Bitte Datei überprüfen.");
+                    return;
+                }
 
-            string pfadZurBriefmarke = openFileDialog1.FileName;
-            string outputFolder = Properties.Settings.Default.Zielpfad;
-            CurrentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            string outputPdf = outputFolder + @$"\{CurrentTime}-output.pdf";
-            //Potenzieller Bug, wenn 10 Briefmarken gleichzeitig gedruckt werden würden, da dann die 1 nicht mehr im Pfad steht
+                string pfadZurBriefmarke = openFileDialog1.FileName;
+                string outputFolder = Properties.Settings.Default.Zielpfad;
+                CurrentTime = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+                string outputPdf = outputFolder + @$"\{CurrentTime}-output.pdf";
+                //Potenzieller Bug, wenn 10 Briefmarken gleichzeitig gedruckt werden würden, da dann die 1 nicht mehr im Pfad steht
 
 
-            string rotatedPdf = RotatePdf(pfadZurBriefmarke, outputPdf, 270);
-            PrintPdf(rotatedPdf, outputFolder, AnzahlBriefmarken);
+                string rotatedPdf = RotatePdf(pfadZurBriefmarke, outputPdf, 270);
+                PrintPdf(rotatedPdf, outputFolder, AnzahlBriefmarken);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public static string RotatePdf(string inputPath, string outputPath, float angle)
@@ -97,7 +105,7 @@ namespace Augenleuchten.Postetiketten
                 int yAbstandGross = 217;
                 int breiteGross = 555;
                 int hoeheGross = 1063;
-
+                bool showedMessage = false;
                 for (int i = 0; i < labelsToBePrinted; i++)
                 {
                     if (i % 2 == 0)
@@ -127,6 +135,11 @@ namespace Augenleuchten.Postetiketten
                     ImagePrinter printer = new ImagePrinter(bitmap);
                     try
                     {
+                        if (showedMessage == false)
+                        {
+                            MessageBox.Show("Druckauftrag wurde erfolgreich an den Drucker gesendet.");
+                            showedMessage = true;
+                        }
                         printer.Print();
                     }
                     catch (Exception e)
@@ -166,7 +179,7 @@ namespace Augenleuchten.Postetiketten
         private void button1_Click_1(object sender, EventArgs e)
         {
             var dr = folderBrowserDialog1.ShowDialog();
-            if(dr == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 Properties.Settings.Default.Zielpfad = folderBrowserDialog1.SelectedPath;
                 txtBoxOutputPath.Text = Properties.Settings.Default.Zielpfad;

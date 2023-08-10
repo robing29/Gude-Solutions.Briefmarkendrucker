@@ -59,7 +59,7 @@
             // 
             // openFileDialog1
             // 
-            openFileDialog1.Filter = "\"PDF-Dateien|*.pdf|Alle Dateien|*.*\"";
+            openFileDialog1.Filter = "PDF-Dateien|*.pdf|Alle Dateien|*.*";
             openFileDialog1.Title = "Briefmarken auswählen";
             openFileDialog1.FileOk += openFileDialog1_FileOk;
             // 
