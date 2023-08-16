@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:InstallerGudeSolutionsEtikettendruck"
+"ProjectName" = "8:InstallerGudeSolutionsBriefmarkendrucker"
 "LanguageId" = "3:1031"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1031"
@@ -16,6 +16,12 @@
         "Entry"
         {
         "MsmKey" = "8:_5A4A41550AA74717996ABF0773A9D325"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_920A5687A5C648B589077ADEDED04B49"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -84,6 +90,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_920A5687A5C648B589077ADEDED04B49"
+            {
+            "SourcePath" = "8:..\\Augenleuchten.Postetiketten\\Favicon Transparent.ico"
+            "TargetName" = "8:Favicon Transparent.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_56F6C6088D304C2A9F7892BC0092EC09"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -139,9 +165,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Gude Solutions Etikettendrucker"
+        "ProductName" = "8:Gude Solutions Briefmarkendrucker"
         "ProductCode" = "8:{822AB9EE-A554-4112-8B99-AC67A5A8B7A8}"
-        "PackageCode" = "8:{2FB278DB-12F8-4758-9876-1C1D4115C7FC}"
+        "PackageCode" = "8:{5753C246-9DBD-4E92-A511-EEF7431BB98E}"
         "UpgradeCode" = "8:{0B213F6A-5607-4CC2-81FF-4581F96335D9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -152,7 +178,7 @@
         "Manufacturer" = "8:Gude Solutions"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Gude Solutions Etikettendrucker Installer"
+        "Title" = "8:Gude Solutions Briefmarkendrucker Installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Gude Solutions"
         "Keywords" = "8:"
@@ -263,7 +289,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7ECD03006C30495EB1CC2C70D935CD3F"
             {
-            "Name" = "8:Shortcut to Veröffentlichungselemente from Augenleuchten.Postetiketten (Active)"
+            "Name" = "8:Gude Solutions Briefmarkendrucker"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -272,12 +298,12 @@
             "Target" = "8:_5A4A41550AA74717996ABF0773A9D325"
             "Folder" = "8:_6054EE2290AA4DB3AF5A380ED12DFEAE"
             "WorkingFolder" = "8:_56F6C6088D304C2A9F7892BC0092EC09"
-            "Icon" = "8:"
+            "Icon" = "8:_920A5687A5C648B589077ADEDED04B49"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F528248A1C1E4EABAA4840EBF7668F11"
             {
-            "Name" = "8:Shortcut to Veröffentlichungselemente from Augenleuchten.Postetiketten (Active)"
+            "Name" = "8:Gude Solutions Briefmarkendrucker"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -286,7 +312,7 @@
             "Target" = "8:_5A4A41550AA74717996ABF0773A9D325"
             "Folder" = "8:_405133D987D2422DA958003045E2433B"
             "WorkingFolder" = "8:_56F6C6088D304C2A9F7892BC0092EC09"
-            "Icon" = "8:"
+            "Icon" = "8:_920A5687A5C648B589077ADEDED04B49"
             "Feature" = "8:"
             }
         }
