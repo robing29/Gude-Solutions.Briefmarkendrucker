@@ -201,5 +201,15 @@ namespace Augenleuchten.Postetiketten
             Properties.Settings.Default.Zielpfad = folderBrowserDialog1.SelectedPath == "" ? Properties.Settings.Default.Zielpfad : folderBrowserDialog1.SelectedPath;
             Properties.Settings.Default.Save();
         }
+
+        private void FormMainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblOutputPath_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

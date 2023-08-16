@@ -14,11 +14,9 @@
 ## Priority - Low:
 - [ ] Add a `README.md` file to the project.
 
-
 - [ ] Automatisches Erkennen von neuen Dateien im Herkunftsordner
 
 # Doing:
-- [ ] Package/Release mit Standalone-Exe bzw. Installer erstellen
 - [ ] Favicon umbenennen
 - [	] Plattformunabhängiges Paket erstellen/einbinden
 - [ ] Release bei GitHub erstellen
@@ -37,3 +35,4 @@
 - [x] Verschiedene Drucker über ein anderes Menü auswählen können (Dropdown?)
 - [x] Drucker und Zielordner-Einstellungen speichern können
 - [x] Unnötige Verweise entfernen, nur eine PDF-Library benutzen?
+- [x] Package/Release mit Standalone-Exe bzw. Installer erstellen
