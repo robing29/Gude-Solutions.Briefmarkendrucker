@@ -19,7 +19,7 @@
 
 # Doing:
 
-- [ ] Release bei GitHub erstellen
+
 
 
 
@@ -40,3 +40,4 @@
 - [x] Favicon auf weiﬂ setzen
 - [x] Add a `README.md` file to the project.
 - [x] Plattformunabh‰ngiges Paket erstellen/einbinden
+- [x] Release bei GitHub erstellen
