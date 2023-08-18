@@ -34,10 +34,10 @@
     <img src="readme-images/Gude-Solutions-250x180.png" alt="Logo" width="250" height="180">
   </a>
 
-<h3 align="center">Gude Solutions Briefmarkendrucker</h3>
+<h3 align="center">Gude-Solutions Briefmarkendrucker</h3>
 
   <p align="center">
-    Kleines WinForms Programm, welches .PDFs mit Briefmarken von der Deutschen Post automatisch auf 10x15cm Labels druckt.
+    Kleines Windows Programm, welches .PDFs mit Briefmarken von der Deutschen Post automatisch auf 10x15cm Labels druckt.
     <br />
     <br />
     <br />
@@ -94,6 +94,8 @@ Dieses .NET 7 WinForms Programm nimmt als Input PDFs der Deutschen Post entgegen
 
 <!-- USAGE EXAMPLES -->
 ## Benutzung
+![Beispiel PDF mit Briefmarken][product-screenshot2]
+(Beispielhafte PDF mit Briefmarken)
 
 Die Deutsche Post liefert zwar einige Möglichkeiten für den Briefmarkendruck, allerdings sind diese an spezifische Druckeranbieter gekoppelt. Mithilfe eines günstigen No-Name Druckers lässt sich ordentlich Geld sparen, allerdings besteht dann das Problem, dass man die Briefmarken nicht automatisch auf die Labels drucken kann.
 
@@ -106,7 +108,7 @@ Aktuell ist das Druckformat (10x15cm) fest einprogrammiert, da mein Kunde nur di
 <!-- CONTACT -->
 ## Contact
 - [![LinkedIn][linkedin-shield]][linkedin-url]
-- [Contact me via E-Mail](robin.gude@gude-solutions.de)
+- [Contact me via E-Mail](mailto:robin.gude@gude-solutions.de)
 
 Project Link: [https://github.com/robing29/Gude-Solutions.Briefmarkendrucker](https://github.com/robing29/Gude-Solutions.Briefmarkendrucker)
 
