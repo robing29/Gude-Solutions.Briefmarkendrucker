@@ -2,7 +2,7 @@
 
 
 
-- [ ] Visual Upgrade
+
 
 ## Priority - High:
 
@@ -14,14 +14,14 @@
 ## Priority - Low:
 - [ ] Add a `README.md` file to the project.
 
-- [ ] Automatisches Erkennen von neuen Dateien im Herkunftsordner
+## Possible Features if demand is high enough:
+- [ ] Automatisches Erkennen von neuen Dateien im Herkunftsordner und dann automatisches Drucken (evtl. mit Bestätigungsdialog)
 
 # Doing:
-- [ ] Favicon umbenennen
+
 - [	] Plattformunabhängiges Paket erstellen/einbinden
 - [ ] Release bei GitHub erstellen
-- [ ] SemVer benutzen
-- [ ] Favicon auf weiß setzen
+
 
 
 # Done:
@@ -36,3 +36,6 @@
 - [x] Drucker und Zielordner-Einstellungen speichern können
 - [x] Unnötige Verweise entfernen, nur eine PDF-Library benutzen?
 - [x] Package/Release mit Standalone-Exe bzw. Installer erstellen
+- [x] Favicon umbenennen
+- [x] Visual Upgrade
+- [x] Favicon auf weiß setzen
