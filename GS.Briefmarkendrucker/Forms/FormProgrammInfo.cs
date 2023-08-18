@@ -23,7 +23,7 @@ namespace GS.Briefmarkendrucker
 
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
             {
-                FileName = "https://github.com/robing29/Gude-Solutions-Briefmarkendrucker",
+                FileName = "https://github.com/robing29/Gude-Solutions.Briefmarkendrucker",
                 UseShellExecute = true
             });
 

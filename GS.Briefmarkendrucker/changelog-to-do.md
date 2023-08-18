@@ -12,14 +12,13 @@
 
 
 ## Priority - Low:
-- [ ] Add a `README.md` file to the project.
 
-## Possible Features if demand is high enough:
+
+## Possible Features (if demand is high enough, if I want to):
 - [ ] Automatisches Erkennen von neuen Dateien im Herkunftsordner und dann automatisches Drucken (evtl. mit Best‰tigungsdialog)
 
 # Doing:
 
-- [	] Plattformunabh‰ngiges Paket erstellen/einbinden
 - [ ] Release bei GitHub erstellen
 
 
@@ -39,3 +38,5 @@
 - [x] Favicon umbenennen
 - [x] Visual Upgrade
 - [x] Favicon auf weiﬂ setzen
+- [x] Add a `README.md` file to the project.
+- [x] Plattformunabh‰ngiges Paket erstellen/einbinden
