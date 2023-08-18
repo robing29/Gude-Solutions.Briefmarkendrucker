@@ -1,4 +1,4 @@
-namespace Augenleuchten.Postetiketten
+namespace GS.Briefmarkendrucker
 {
     internal static class Program
     {

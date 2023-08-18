@@ -1,4 +1,4 @@
-﻿namespace Augenleuchten.Postetiketten
+﻿namespace GS.Briefmarkendrucker
 {
     partial class FormMainWindow
     {
@@ -41,14 +41,16 @@
             lblErkannteBriefmarken = new Label();
             txtBoxErkannteBriefmarken = new TextBox();
             menuStrip1 = new MenuStrip();
-            druckerAuswählenToolStripMenuItem = new ToolStripMenuItem();
+            EinstellungenToolStripMenuItem = new ToolStripMenuItem();
             druckerAuswaehlenToolStripMenuItem1 = new ToolStripComboBox();
-            printDialog1 = new PrintDialog();
+            toolStripSeparator1 = new ToolStripSeparator();
+            programInfotoolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btnPrintCurrentFile
             // 
+            btnPrintCurrentFile.FlatStyle = FlatStyle.System;
             btnPrintCurrentFile.Location = new Point(98, 249);
             btnPrintCurrentFile.Margin = new Padding(2);
             btnPrintCurrentFile.Name = "btnPrintCurrentFile";
@@ -83,6 +85,7 @@
             // 
             // btnChangePath
             // 
+            btnChangePath.FlatStyle = FlatStyle.System;
             btnChangePath.Location = new Point(592, 53);
             btnChangePath.Name = "btnChangePath";
             btnChangePath.Size = new Size(97, 24);
@@ -93,6 +96,7 @@
             // 
             // btnChangeOutputPath
             // 
+            btnChangeOutputPath.FlatStyle = FlatStyle.System;
             btnChangeOutputPath.Location = new Point(592, 100);
             btnChangeOutputPath.Name = "btnChangeOutputPath";
             btnChangeOutputPath.Size = new Size(97, 24);
@@ -143,22 +147,23 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.BackColor = SystemColors.ControlLightLight;
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { druckerAuswählenToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { EinstellungenToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(701, 24);
             menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             // 
-            // druckerAuswählenToolStripMenuItem
+            // EinstellungenToolStripMenuItem
             // 
-            druckerAuswählenToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            druckerAuswählenToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { druckerAuswaehlenToolStripMenuItem1 });
-            druckerAuswählenToolStripMenuItem.Name = "druckerAuswählenToolStripMenuItem";
-            druckerAuswählenToolStripMenuItem.Size = new Size(90, 20);
-            druckerAuswählenToolStripMenuItem.Text = "Einstellungen";
-            druckerAuswählenToolStripMenuItem.Click += druckerAuswählenToolStripMenuItem_Click;
+            EinstellungenToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            EinstellungenToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { druckerAuswaehlenToolStripMenuItem1, toolStripSeparator1, programInfotoolStripMenuItem1 });
+            EinstellungenToolStripMenuItem.Name = "EinstellungenToolStripMenuItem";
+            EinstellungenToolStripMenuItem.Size = new Size(90, 20);
+            EinstellungenToolStripMenuItem.Text = "Einstellungen";
+            EinstellungenToolStripMenuItem.Click += druckerAuswählenToolStripMenuItem_Click;
             // 
             // druckerAuswaehlenToolStripMenuItem1
             // 
@@ -166,6 +171,7 @@
             druckerAuswaehlenToolStripMenuItem1.AutoToolTip = true;
             druckerAuswaehlenToolStripMenuItem1.DropDownStyle = ComboBoxStyle.DropDownList;
             druckerAuswaehlenToolStripMenuItem1.DropDownWidth = 300;
+            druckerAuswaehlenToolStripMenuItem1.FlatStyle = FlatStyle.System;
             druckerAuswaehlenToolStripMenuItem1.MaxDropDownItems = 16;
             druckerAuswaehlenToolStripMenuItem1.Name = "druckerAuswaehlenToolStripMenuItem1";
             druckerAuswaehlenToolStripMenuItem1.Size = new Size(180, 23);
@@ -175,14 +181,24 @@
             druckerAuswaehlenToolStripMenuItem1.SelectedIndexChanged += druckerAuswaehlenToolStripMenuItem1_SelectedIndexChanged;
             druckerAuswaehlenToolStripMenuItem1.Click += druckerAuswählenToolStripMenuItem1_Click;
             // 
-            // printDialog1
+            // toolStripSeparator1
             // 
-            printDialog1.UseEXDialog = true;
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(319, 6);
+            // 
+            // programInfotoolStripMenuItem1
+            // 
+            programInfotoolStripMenuItem1.Image = Properties.Resources.question_mark_round_line_icon_32x32;
+            programInfotoolStripMenuItem1.Name = "programInfotoolStripMenuItem1";
+            programInfotoolStripMenuItem1.Size = new Size(322, 30);
+            programInfotoolStripMenuItem1.Text = "Info über Gude-Solutions Briefmarkendrucker";
+            programInfotoolStripMenuItem1.Click += programInfotoolStripMenuItem1_Click;
             // 
             // FormMainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(701, 316);
             Controls.Add(lblErkannteBriefmarken);
             Controls.Add(txtBoxErkannteBriefmarken);
@@ -194,11 +210,13 @@
             Controls.Add(txtBoxCurrentFile);
             Controls.Add(btnPrintCurrentFile);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "FormMainWindow";
-            Text = "Gude-Solutions Briefmarkendrucker";
+            Text = "Gude-Solutions Briefmarkendrucker - 1.0.0";
             FormClosed += FormMainWindow_FormClosed;
             Load += FormMainWindow_Load;
             menuStrip1.ResumeLayout(false);
@@ -221,8 +239,9 @@
         private Label lblErkannteBriefmarken;
         private TextBox txtBoxErkannteBriefmarken;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem druckerAuswählenToolStripMenuItem;
-        private PrintDialog printDialog1;
+        private ToolStripMenuItem EinstellungenToolStripMenuItem;
         private ToolStripComboBox druckerAuswaehlenToolStripMenuItem1;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem programInfotoolStripMenuItem1;
     }
 }

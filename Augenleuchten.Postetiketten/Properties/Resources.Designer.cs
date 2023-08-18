@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Augenleuchten.Postetiketten.Properties {
+namespace GS.Briefmarkendrucker.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Augenleuchten.Postetiketten.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Augenleuchten.Postetiketten.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GS.Briefmarkendrucker.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,26 @@ namespace Augenleuchten.Postetiketten.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap question_mark_round_line_icon_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("question-mark-round-line-icon-32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Transparent_Logo320 {
+            get {
+                object obj = ResourceManager.GetObject("Transparent Logo320", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

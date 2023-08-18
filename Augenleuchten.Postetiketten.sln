@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Augenleuchten.Postetiketten", "Augenleuchten.Postetiketten\Augenleuchten.Postetiketten.csproj", "{CBC6F9CA-4C15-430D-AFFD-E03225E24B2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Briefmarkendrucker", "Augenleuchten.Postetiketten\GS.Briefmarkendrucker.csproj", "{CBC6F9CA-4C15-430D-AFFD-E03225E24B2D}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{DF6FC7CA-6A73-4B37-8D48-0CCF4BBE82B9}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GS.Briefmarkendrucker.Installer", "Installer\Installer.vdproj", "{DF6FC7CA-6A73-4B37-8D48-0CCF4BBE82B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

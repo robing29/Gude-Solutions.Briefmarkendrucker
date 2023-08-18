@@ -1,11 +1,8 @@
 using Spire.Pdf;
-using Spire.Pdf.Graphics;
-using System.Drawing.Imaging;
 using System.Drawing.Printing;
-using System.Runtime.ExceptionServices;
 using System.Text.RegularExpressions;
 
-namespace Augenleuchten.Postetiketten
+namespace GS.Briefmarkendrucker
 {
     public partial class FormMainWindow : Form
     {
@@ -85,7 +82,7 @@ namespace Augenleuchten.Postetiketten
 
         static void PrintPdf(string filePath, string outputPath, int anzahlBriefmarken)
         {
-            using (Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument())
+            using (PdfDocument doc = new PdfDocument())
             {
                 doc.LoadFromFile(filePath);
                 var image = doc.SaveAsImage(0, 300, 300);
@@ -204,12 +201,22 @@ namespace Augenleuchten.Postetiketten
 
         private void FormMainWindow_Load(object sender, EventArgs e)
         {
-
         }
 
         private void lblOutputPath_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void überToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void programInfotoolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form programInfo = new FormProgrammInfo();
+            programInfo.Show();
         }
     }
 }

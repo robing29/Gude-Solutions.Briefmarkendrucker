@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Augenleuchten.Postetiketten
+namespace GS.Briefmarkendrucker
 {
     internal class ImagePrinter
     {
